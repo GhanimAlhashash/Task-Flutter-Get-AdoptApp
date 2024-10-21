@@ -1,5 +1,8 @@
+import 'package:adopt_app/pages/add_page.dart';
 import 'package:adopt_app/pages/home_page.dart';
+import 'package:adopt_app/pages/update_page.dart';
 import 'package:adopt_app/providers/pets_provider.dart';
+import 'package:adopt_app/widgets/update_form.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +31,18 @@ class MyApp extends StatelessWidget {
         path: '/',
         builder: (context, state) => const HomePage(),
       ),
+      GoRoute(
+        path: '/add',
+        builder: (context, state) => AddPage(),
+      ),
+      GoRoute(
+          path: '/update/:petId',
+          builder: (context, state) {
+            final pet = Provider.of<PetsProvider>(context).pets.firstWhere(
+                (pet) =>
+                    pet.id.toString() == (state.pathParameters['petsId']!));
+            return UpdatePage(pet: pet);
+          }),
     ],
   );
 }

@@ -37,7 +37,10 @@ class PetCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.edit)),
+                          onPressed: () {
+                            context.push('/update/${pet.id}');
+                          },
+                          icon: const Icon(Icons.edit)),
                       IconButton(
                           onPressed: () {},
                           icon: const Icon(

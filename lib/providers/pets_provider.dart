@@ -15,4 +15,16 @@ class PetsProvider extends ChangeNotifier {
     pets = await DioClient().getPets();
     notifyListeners();
   }
+
+  void createPet(Pet pet) async {
+    Pet newPet = await DioClient().createPet(pet: pet);
+    pets.insert(0, newPet);
+    notifyListeners();
+  }
+
+  void updatePet(Pet pet) async {
+    Pet newPet = await DioClient().updatePet(pet: pet);
+    pets.insert(0, newPet);
+    notifyListeners();
+  }
 }
